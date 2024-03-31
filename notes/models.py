@@ -31,8 +31,8 @@ class Note(models.Model):
     def str(self):
         return self.title
 
-    def save(self, args, **kwargs):
+    def save(self, *args, **kwargs):
         if not self.slug:
             max_slug_length = self._meta.get_field('slug').max_length
             self.slug = slugify(self.title)[:max_slug_length]
-        super().save(args, **kwargs)
+        super().save(*args, **kwargs)
